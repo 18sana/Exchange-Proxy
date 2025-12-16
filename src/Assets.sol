@@ -12,7 +12,7 @@ contract Assets is IERC721 {
 
     /// @notice Token collection symbol
     string public constant symbol = "AST";
-    
+
     /// @dev Mapping from token ID to owner
     mapping(uint256 => address) private _owners;
 
@@ -86,9 +86,7 @@ contract Assets is IERC721 {
 
     function _isAuthorized(address from, uint256 tokenId) internal view returns (bool) {
         address sender = msg.sender;
-        return sender == from
-            || sender == getApproved(tokenId)
-            || isApprovedForAll(from, sender);
+        return sender == from || sender == getApproved(tokenId) || isApprovedForAll(from, sender);
     }
 
     function _transfer(address from, address to, uint256 tokenId) internal {
@@ -117,10 +115,7 @@ contract Assets is IERC721 {
     /// @dev Caller must be the registered Exchange; seller must have approved the Exchange
     function transferByExchange(address from, address to, uint256 tokenId) external {
         require(msg.sender == exchange, "Only exchange");
-        require(
-            getApproved(tokenId) == exchange || isApprovedForAll(from, exchange),
-            "Exchange not approved"
-        );
+        require(getApproved(tokenId) == exchange || isApprovedForAll(from, exchange), "Exchange not approved");
         _transfer(from, to, tokenId);
     }
 
@@ -155,5 +150,4 @@ contract Assets is IERC721 {
         require(_exists(tokenId), "Token does not exist");
         return _assetPrices[tokenId];
     }
-
 }

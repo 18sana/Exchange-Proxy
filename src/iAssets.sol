@@ -8,7 +8,7 @@ interface IERC721 {
     /// @dev Emitted when ownership of any NFT changes by any mechanism
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
-    /// @dev Emitted when the approved address for an NFT is changed 
+    /// @dev Emitted when the approved address for an NFT is changed
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 
     /// @dev Emitted when an operator is enabled or disabled for an owner

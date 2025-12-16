@@ -128,4 +128,3 @@ contract Coins is IERC20 {
         return true;
     }
 }
-

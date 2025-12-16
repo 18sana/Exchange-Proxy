@@ -25,11 +25,8 @@ contract DeployScript is Script {
         bytes memory data = abi.encodeWithSelector(ExchangeUpgradeable.initialize.selector);
 
         // Deploy Transparent Proxy
-        TransparentUpgradeableProxy proxy = new TransparentUpgradeableProxy(
-            address(exchangeImpl),
-            address(proxyAdmin),
-            data
-        );
+        TransparentUpgradeableProxy proxy =
+            new TransparentUpgradeableProxy(address(exchangeImpl), address(proxyAdmin), data);
 
         coins.setExchange(address(proxy));
         assets.setExchange(address(proxy));
